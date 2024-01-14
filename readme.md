@@ -12,15 +12,19 @@ The end goal of the project is to develop an outreach plan for specific conditio
 The organization interacts as follows:
 ```mermaid
 flowchart TD
-A(Hospital Manager) --> B(Epidemiologist)
-B --> C(Data Analyst)
-C <--> D(Outreach Coordinator)
+
+A(User) --> B(Planner)
+B <--> C(Critic)
+B --> D (Epidemiologist)
+D --> E (Data Analyst)
+E --> F (Code Executor)
+E <--> G (Outreach Coordinator)
 ```
 
 ## Process
 The user identifies the condition that is to be addressed, e.g. "_Contact patients that are at risk of heart disease._".
 
-    
+
 
 
 
