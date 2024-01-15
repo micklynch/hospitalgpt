@@ -3,7 +3,7 @@ from autogen import AssistantAgent, UserProxyAgent, GroupChat, GroupChatManager,
 openai_config_list = config_list_from_json(
     "OAI_CONFIG_LIST",
     filter_dict={
-        "model": ["gpt-4"],
+        "model": ["gpt-4-0613"],
     },
 )
 
@@ -31,7 +31,7 @@ mixtral_config = {
 user_proxy = UserProxyAgent(
    name="Admin",
    system_message="A human admin who will define the condition that the hospital planner needs to screen for",
-    max_consecutive_auto_reply=10,
+    max_consecutive_auto_reply=15,
     is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"),
     code_execution_config={
         "work_dir": "groupchat",
@@ -47,8 +47,9 @@ planner = AssistantAgent(
 
     Suggest a plan. Revise the plan based on feedback from admin and critic, until admin approval.
     The plan may involve an epidemiologist who defines the patient criteria to solve target outreach.
-    The data analyst who can write code and an outreach assistant who doesn't write code.
-    Explain the plan first. Be clear which step is performed by the epidemiologist, data analyst
+    The data analyst who can write code and an executor who will run the code to output a list of patients.
+    An outreach assistant who can take the list of patients and write personalized messages to them.
+    Explain the plan first. Be clear which step is performed by the epidemiologist, data analyst, executor
     and outreach admin.
     """,
     llm_config=gpt4_config,
@@ -70,7 +71,8 @@ data_analyst = AssistantAgent(
     system_message="""
     Data analyst. You are an expert in the healthcare data systems and FHIR standards. 
 
-    You write python/shell code to find patients in a FHIR R4 API server that match the criteria defined by the epidemiologist. 
+    You write python/shell code to find patients in a FHIR R4 API server that match the criteria defined by the epidemiologist.
+    The FHIR API server URL is https://hapi.fhir.org/baseR4/.
     Wrap the code in a code block that specifies the script type. 
     The user can't modify your code. So do not suggest incomplete code which requires others to modify. 
     Don't use a code block if it's not intended to be executed by the executor.
@@ -80,25 +82,26 @@ data_analyst = AssistantAgent(
     Suggest the full code instead of partial code or code changes. 
     If the error can't be fixed or if the task is not solved even after the code is executed successfully, 
     analyze the problem, revisit your assumption, collect additional info you need, and think of a different approach to try. 
-
-    The FHIR API server URL is https://hapi.fhir.org/baseR4/.
+    Save the output to a file called patients.csv.
     """,
     llm_config=gpt4_config,
 )
 
 executor = UserProxyAgent(
     name="Executor",
-    system_message="Executor. Execute the code written by the data analyst and report the result.",
+    system_message="""
+        Executor. Execute the code written by the data analyst and report the result.
+    """,
     human_input_mode="NEVER",
-    code_execution_config={"last_n_messages": 3, "work_dir": "paper"},
+    code_execution_config={"last_n_messages": 3, "work_dir": "groupchat"},
 )
 
 outreach_admin = AssistantAgent(
     name="outreach_admin",
     system_message="""
-    Outreach administrator. You are an expert in the healthcare system. You take the list of patients from the data analyst and create a personalized 
+    Outreach administrator. You are an expert in the healthcare system. You take the list of patients the patients.csv file and create a personalized 
     email to send to each patient. 
-    You output a csv file which contains the patient ids, names, email addresses and the created email.
+    You output a csv file called out.csv which contains the patient ids, names, email addresses and the text of the email you just created.
     """,
     llm_config=mixtral_config,
 )
@@ -118,6 +121,6 @@ manager = GroupChatManager(groupchat=groupchat, llm_config=gpt4_config)
 user_proxy.initiate_chat(
     manager,
     message="""
-    Contact patients that are at risk of heart disease.
+    Contact all the patients in the database and ask them to come for a regular checkup.
     """,
 )

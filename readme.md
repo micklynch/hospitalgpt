@@ -11,14 +11,16 @@ The end goal of the project is to develop an outreach plan for specific conditio
 ## Organization
 The organization interacts as follows:
 ```mermaid
-flowchart TD
-
-A(User) --> B(Planner)
-B <--> C(Critic)
-B --> D (Epidemiologist)
-D --> E (Data Analyst)
-E --> F (Code Executor)
-E <--> G (Outreach Coordinator)
+flowchart LR;
+    A(User) --> B(Planner);
+    B <--> C(Critic);
+    B --> D(Epidemiologist);
+    D --> E(Data Analyst);
+    F <--> H[(FHIR Server)];
+    H --> E;
+    E <-- 1 --> F(Code Executor)
+    E ---- 2 ----> G(Outreach Coordinator);
+    G --> I((out.csv));
 ```
 
 ## Process
