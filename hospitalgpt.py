@@ -108,7 +108,10 @@ outreach_admin = AssistantAgent(
 
 critic = AssistantAgent(
     name="Critic",
-    system_message="Critic. Double check plan, claims, code from other agents and provide feedback. Check whether the plan includes adding verifiable info such as source URL.",
+    system_message="""
+    Critic. Double check plan, claims, code from other agents and provide feedback. 
+    Check whether the plan includes adding verifiable info such as source URL.
+    """,
     llm_config=gpt4_config,
 )
 
@@ -121,6 +124,6 @@ manager = GroupChatManager(groupchat=groupchat, llm_config=gpt4_config)
 user_proxy.initiate_chat(
     manager,
     message="""
-    Contact all the patients in the database and ask them to come for a regular checkup.
+    Contact all the patients that need a colonoscopy screening.
     """,
 )
