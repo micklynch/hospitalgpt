@@ -117,10 +117,6 @@ data_analyst = AssistantAgent(
     llm_config=gpt4_config,
 )
 
-# Create groupchat
-""" groupchat = GroupChat(
-    agents=[user_proxy, planner, epidemiologist, data_analyst, executor, outreach_admin, critic], messages=[])
-manager = GroupChatManager(groupchat=groupchat, llm_config=gpt4_config) """
 
 user_proxy.initiate_chat(
     data_analyst, message="Find all the patients aged between 100 and 105 with Hyperglycemia")
