@@ -12,13 +12,6 @@ openai_config_list = config_list_from_json(
     },
 )
 
-mixtral_config_list = config_list_from_json(
-    "OAI_CONFIG_LIST",
-    filter_dict={
-        "model": ["mistralai/Mixtral-8x7B-Instruct-v0.1"],
-    },
-)
-
 gpt4_config = {
     "cache_seed": 42,  # change the cache_seed for different trials
     "temperature": 0,
@@ -59,45 +52,6 @@ gpt4_config = {
     "timeout": 120,
 }
 
-mixtral_config = {
-    "cache_seed": 42,  # change the cache_seed for different trials
-    "temperature": 0,
-    "functions": [
-        {
-            "name": "get_patients_between_ages_and_condition",
-            "description": """
-            Fetches and returns a list of patients from a specified FHIR R4 API endpoint based on the patients' age range and condition.
-            
-            Returns:
-            An array of dictionary where each dictionary represents a patient and contains the patient's full name, age, MRN, email address, and condition.
-
-            Example usage:
-            >>> get_patients_between_ages_and_condition(50, 70, "Myocardial")
-            This will return all patients who are between the ages of 50 and 70 (inclusive) and who have a condition with the name containing 'Myocardial'.
-            """,
-            "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "min_age": {
-                            "type": "number",
-                            "description": "The minimum age to filter patients by. It returns only patients older than or equal to this age.",
-                        },
-                        "max_age": {
-                            "type": "number",
-                            "description": "The maximum age to filter patients by. It returns only patients younger than this age.",
-                        },
-                        "condition": {
-                            "type": "string",
-                            "description": "The specific health condition to filter patients by. It returns only patients who have this condition.",
-                        }
-                    },
-                "required": ["min_age, max_age, condition"],
-            },
-        }
-    ],
-    "config_list": mixtral_config_list,
-    "timeout": 120,
-}
 
 def get_patients_between_ages_and_condition(min_age: int, max_age: int, condition: str) -> List[Dict[str, Union[str, int, None]]]:
     today = datetime.date.today()
