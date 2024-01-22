@@ -17,9 +17,8 @@ flowchart LR;
     B --> D(Epidemiologist);
     D --> E(Data Analyst);
     F <--> H[(FHIR Server)];
-    H --> E;
     E <-- 1 --> F(Code Executor)
-    E ---- 2 ----> G(Outreach Coordinator);
+    E -- 2 --> G(Outreach Coordinator);
     G --> I((out.csv));
 ```
 
