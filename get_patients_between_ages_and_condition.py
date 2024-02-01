@@ -30,6 +30,12 @@ def get_patients_between_ages_and_condition(min_age: int, max_age: int, conditio
     # Get conditions
     r = requests.get(f'https://hapi.fhir.org/baseR4/Condition?_pretty=true&subject.birthdate=le{max_birthdate}&subject.birthdate=gt{min_birthdate}')
     conditions = r.json()
+    
+    # Check if conditions is empty
+    if 'entry' not in conditions or not conditions['entry']:
+        # Handle the empty conditions case, you can return an empty list or raise an exception
+        return "No patients match the given criteria"
+    
     # Filter out the conditions where the 'code' key does not exist
     entries = [entry for entry in conditions['entry'] if 'code' in entry['resource']]
     # Filter by condition
@@ -67,4 +73,4 @@ def get_patients_between_ages_and_condition(min_age: int, max_age: int, conditio
     return patients
 
 # Example usage:
-print(get_patients_between_ages_and_condition(100, 105, "Hyperglycemia"))
+print(get_patients_between_ages_and_condition(100, 105, "Osteoporsis"))
