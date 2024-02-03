@@ -73,4 +73,4 @@ def get_patients_between_ages_and_condition(min_age: int, max_age: int, conditio
     return patients
 
 # Example usage:
-print(get_patients_between_ages_and_condition(100, 105, "Osteoporsis"))
+print(get_patients_between_ages_and_condition(100, 105, "Hyperglycemia"))

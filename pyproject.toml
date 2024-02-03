@@ -9,6 +9,8 @@ readme = "README.md"
 python = ">=3.11,<3.12"
 pyautogen = "^0.2.3"
 requests = "^2.31.0"
+openai = "^1.10.0"
+python-dotenv = "^1.0.1"
 
 
 [build-system]

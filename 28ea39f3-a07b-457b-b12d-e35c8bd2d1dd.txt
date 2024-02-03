@@ -1,0 +1,30 @@
+Name: Normand813 Zemlak964
+MRN: 28ea39f3-a07b-457b-b12d-e35c8bd2d1dd
+Postcode: 01545
+Email: test@test.com
+
+Patient: https://hapi.fhir.org/baseR4/Patient/9689767?_pretty=true
+ Subject: Important Colonoscopy Screening for You
+
+Dear Normand813 Zemlak964,
+
+I hope this email finds you well. I am writing to inform you about an important preventive health measure that is recommended for individuals who have a history of hyperglycemia, a disorder characterized by high blood sugar levels.
+
+Given your previous history of hyperglycemia, I would like to schedule a colonoscopy screening for you. This screening procedure is essential for the early detection and prevention of colorectal cancer, one of the most common types of cancer. It is recommended for individuals over the age of 50, or earlier if there is a family history of colorectal cancer or other risk factors.
+
+The colonoscopy screening procedure involves the examination of the colon and rectum using a thin, flexible tube with a camera attached to it. The procedure usually takes about 30 minutes and is performed under sedation to ensure your comfort. The preparation for the procedure involves a clear liquid diet and taking a laxative to clean out the colon.
+
+Colonoscopy screening can detect polyps, which are growths in the colon that can become cancerous over time. If any polyps are found during the procedure, they can be easily removed, preventing the development of colorectal cancer.
+
+I would like to schedule your colonoscopy screening as soon as possible. Please let me know if you have any questions or concerns, or if you would like to schedule a consultation with me to discuss the procedure in more detail.
+
+Thank you for your attention to this important matter. I look forward to hearing from you soon.
+
+Best regards,
+
+[Your Name]
+
+[Your Title]
+
+[Your Contact Information]
+-----------------------------------------
