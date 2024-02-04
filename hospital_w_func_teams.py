@@ -174,7 +174,7 @@ def find_patients(criteria: str) -> None:
     return
 
 """
-STEP 3: 
+STEP 2.1: 
 This is a helper function to get the patient details from a FHIR R4 API server based
 on the patient's birthdate and the condition name.
 This function is used by the data analyst.
@@ -232,7 +232,7 @@ def get_patients_between_ages_and_condition(min_age: int, max_age: int, conditio
     return patients
 
 """
-STEP 4: 
+STEP 3: 
 This is a function which generates the emails for the patients.
 """
 def write_outreach_emails(patient_details: List, user_proposal: str) -> None:
