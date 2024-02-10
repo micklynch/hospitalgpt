@@ -9,7 +9,7 @@ The end goal of the project is to develop an outreach plan for specific conditio
 - Outreach coordinator
 
 ## Organization
-The organization interacts as follows:
+The agents interact as follows:
 ```mermaid
 flowchart LR;
     A(User) --> B(Planner);
@@ -22,11 +22,4 @@ flowchart LR;
     G --> I((out.csv));
 ```
 
-## Process
-The user identifies the condition that is to be addressed, e.g. "_Contact patients that are at risk of heart disease._".
-
-
-
-
-
-## Conclusion
+More details can be found in my [Medium Article](https://medium.com/@micklynch_6905/hospitalgpt-managing-a-patient-population-with-autogen-powered-by-gpt-4-mixtral-8x7b-ef9f54f275f1).
