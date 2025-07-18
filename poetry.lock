@@ -361,15 +361,15 @@ typing-extensions = ">=4.7,<5"
 datalib = ["numpy (>=1)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)"]
 
 [[package]]
-name = "pyautogen"
+name = "ag2"
 version = "0.2.3"
 description = "Enabling Next-Gen LLM Applications via Multi-Agent Conversation Framework"
 category = "main"
 optional = false
 python-versions = ">=3.8, <3.12"
 files = [
-    {file = "pyautogen-0.2.3-py3-none-any.whl", hash = "sha256:f7f8dea3bc5766ff24531638009e50e33aea174a456dbdb94b4ef24ac2c5a1c9"},
-    {file = "pyautogen-0.2.3.tar.gz", hash = "sha256:9643f4772ea7f848ec4e2e0bf90b3fab7c16bb59b88328e129a4d9dde4c7c5bf"},
+    {file = "ag2-0.2.3-py3-none-any.whl", hash = "sha256:f7f8dea3bc5766ff24531638009e50e33aea174a456dbdb94b4ef24ac2c5a1c9"},
+    {file = "ag2-0.2.3.tar.gz", hash = "sha256:9643f4772ea7f848ec4e2e0bf90b3fab7c16bb59b88328e129a4d9dde4c7c5bf"},
 ]
 
 [package.dependencies]
